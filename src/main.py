@@ -1,4 +1,4 @@
-import modules.detect as detect
+import modules.genWAF as genWAF
 import argparse
 import json
 
@@ -12,4 +12,4 @@ if __name__ == "__main__":
     target_url = args.url
     method = args.method.upper()
     
-    detect.reflect_test(target_url, args.params, method)
+    genWAF.reflect_test(target_url, args.params, method)

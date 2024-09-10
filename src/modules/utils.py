@@ -5,32 +5,6 @@ import requests
 import json
 
 class Utils:
-    def __init__(self, target: str, method: str, targetParam: str, extraParams: str, cookie: str, isJsonBody: bool):
-        self.target = target
-        self.method = method
-        self.targetParam = targetParam
-        self.extraParams = extraParams
-        self.isJsonBody = isJsonBody
-        self.cookie = cookie  
-        self.randomString()
-    
-    def sendPayload(self, payload):
-        payload = self.addRandomStringToPayload(payload)
-        data = {
-            self.targetParam: payload,
-        }
-        data.update(json.loads(self.extraParams))
-        if self.isJsonBody:
-            headers = {
-                'Content-Type': 'application/json'
-            }
-            response = requests.post(f'{self.target}', json=data, headers=headers)
-        elif self.method == 'POST':
-            response = requests.post(f'{self.target}', data=data)
-        else:
-            response = requests.get(f'{self.target}', params=data)
-        
-        return response
     
     def read_lines_from_file(file_path):
         """
@@ -47,31 +21,56 @@ class Utils:
             # Read lines, strip whitespace, and ignore empty lines
             lines = [line.strip() for line in file.readlines() if line.strip()]
         return lines
-
-    def randomString(self, length = 10 ):
+    def randomString(self, length = 10, filtered = []):
         """
-        Generate a random string
+        Generate a random string and store it in the object
         
         :param length: Length of the string
         :return: Random string
         """
-        randomStr = ''.join(random.choice(string.ascii_letters) for _ in range(length))
-        self.randomStr = randomStr
-
-    def addRandomStringToPayload(self, payload):
-        """
-        Add random string to payload for detecting where the payload is reflected
-        """
-        randomStringText = self.randomStr
-        payload = f"{randomStringText}{payload}{randomStringText}"
-        return payload
-
-    def getDataFromResponse(self, response):
+        allowedChar = ''.join(c for c in string.ascii_letters if c not in filtered)
+        randomStr = ''.join(random.choice(allowedChar) for i in range(length))
+        for word in filtered:
+            if word in randomStr:
+                return self.randomString(length, filtered)
+        return randomStr
+            
+     
+class RequestHandler:
+    def __init__(self, target: str, method: str, targetParam: str, extraParams: str, cookie: str, isJsonBody: bool):
+        self.target = target
+        self.method = method
+        self.targetParam = targetParam
+        self.extraParams = extraParams
+        self.isJsonBody = isJsonBody
+        self.cookie = cookie
+    def sendPayload(self, payload):
+        data = {
+            self.targetParam: payload,
+        }
+        data.update(json.loads(self.extraParams))
+        if self.isJsonBody:
+            headers = {
+                'Content-Type': 'application/json'
+            }
+            response = requests.post(f'{self.target}', json=data, headers=headers)
+        elif self.method == 'POST':
+            response = requests.post(f'{self.target}', data=data)
+        else:
+            response = requests.get(f'{self.target}', params=data)
+        
+        return response
+    
+    
+    def getDataFromResponse(self, response, randomPrefix, randomSubfix):
         """
         Get data from response
-        
+
         :param response: Response object
         :return: Data from response
         """
-        if self.randomStr in response.text:
-            return response.text.split(self.randomStr)[1]
+        if randomPrefix in response.text and randomSubfix in response.text:
+            data = response.text.split(randomPrefix)[1].split(randomSubfix)[0]
+            if len(data) > 0:
+                return data
+        return ''

