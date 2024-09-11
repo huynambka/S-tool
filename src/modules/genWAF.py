@@ -1,13 +1,13 @@
 import requests
 import json
 import string
-from utils import RequestHandler, Utils
+from .utils import *
 
-reqHandler = RequestHandler('http://localhost:1337/addContact', 'POST', 'country', '{}', '', True)
 utils = Utils()
 waf = []
 singleChar = [letter for letter in string.ascii_letters] + [number for number in string.digits] + [symbol for symbol in string.punctuation]
 keywords = [
+    'if',
     'java',
     'Class',
     'Object',
@@ -69,7 +69,6 @@ keywords = [
     'instanceof',
     'native',
     'import',
-    'if',
     'cmd',
     'eval',
     'true',
@@ -81,48 +80,50 @@ keywords = [
     'goto',
     'bash'
 ]
-javaKeywords = [
+
+class genWAF:
+    def __init__(self, reqHandler):
+        self.reqHandler = reqHandler
     
-]
-def isFiltered(word, response, randomPrefix, randomSubfix):
-    """
-    Check if the response is filtered by the WAF
-    """
-    if response.status_code == 403 or "blocked" in response.text.lower() or "forbidden" in response.text.lower():
-        return True
-    if word not in response.text and randomPrefix in response.text and randomSubfix in response.text:
-        return True
-    return False
-def checkSingleChar():
-    """
-    Check what characters are filter by the WAF
-    """
-    for char in singleChar:
-        randomPrefix = utils.randomString(length = 10, filtered = [char] + waf)
-        randomSubfix = utils.randomString(length = 10, filtered = [char] + waf)
-        payload = f"{randomPrefix}{char}{randomSubfix}"
-        response = reqHandler.sendPayload(payload)
-        if isFiltered(char, response, randomPrefix, randomSubfix):
-            if char in string.ascii_letters:
-                print(payload)
-            waf.append(char)
-            utils.randomString(length = 10, filtered=waf)
-def checkKeyword():
-    """
-    Check what Java keywords are filter by the WAF
-    """
-    for keyword in keywords:
-        randomPrefix = utils.randomString(length = 10, filtered=waf)
-        randomSubfix = utils.randomString(length = 10, filtered=waf)
-        payload = f"{randomPrefix}{keyword}{randomSubfix}"
-        response = reqHandler.sendPayload(payload)
-        if isFiltered(keyword, response, randomPrefix, randomSubfix):
-            waf.append(keyword)
-            utils.randomString(length = 10, filtered=waf)
-def genWAF():
-    """
-    Generate WAF filter
-    """
-    checkSingleChar()
-    checkKeyword()
-    return waf
+    def isFiltered(self, word, response, randomPrefix, randomSubfix):
+        """
+        Check if the response is filtered by the WAF
+        """
+        if response.status_code == 403 or "blocked" in response.text.lower() or "forbidden" in response.text.lower():
+            return True
+        if word not in response.text and randomPrefix in response.text and randomSubfix in response.text:
+            return True
+        return False
+    def checkSingleChar(self):
+        """
+        Check what characters are filter by the WAF
+        """
+        for char in singleChar:
+            randomPrefix = utils.randomString(length = 10, filtered = [char] + waf)
+            randomSubfix = utils.randomString(length = 10, filtered = [char] + waf)
+            payload = f"{randomPrefix}{char}{randomSubfix}"
+            response = self.reqHandler.sendPayload(payload)
+            if self.isFiltered(char, response, randomPrefix, randomSubfix):
+                if char in string.ascii_letters:
+                    print(payload)
+                waf.append(char)
+                utils.randomString(length = 10, filtered=waf)
+    def checkKeyword(self):
+        """
+        Check what Java keywords are filter by the WAF
+        """
+        for keyword in keywords:
+            randomPrefix = utils.randomString(length = 10, filtered=waf)
+            randomSubfix = utils.randomString(length = 10, filtered=waf)
+            payload = f"{randomPrefix}{keyword}{randomSubfix}"
+            response = self.reqHandler.sendPayload(payload)
+            if self.isFiltered(keyword, response, randomPrefix, randomSubfix):
+                waf.append(keyword)
+                utils.randomString(length = 10, filtered=waf)
+    def generateWAF(self):
+        """
+        Generate WAF filter
+        """
+        self.checkKeyword()
+        self.checkSingleChar()
+        return waf

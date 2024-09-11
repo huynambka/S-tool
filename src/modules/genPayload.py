@@ -110,7 +110,7 @@ class GenPayload:
             randomPrefix = utils.randomString(length = 10)
             randomSubfix = utils.randomString(length = 10)            
             payload = f"{randomPrefix}{payload}{randomSubfix}"
-            result = reqHandler.getDataFromResponse(reqHandler.sendPayload(payload), randomPrefix, randomSubfix)
+            result = utils.getDataFromResponse(reqHandler.sendPayload(payload), randomPrefix, randomSubfix)
             self.enrichSubstringTable('stringFields', i, result)
 
         # String methods
@@ -119,7 +119,7 @@ class GenPayload:
             randomPrefix = utils.randomString(length = 10)
             randomSubfix = utils.randomString(length = 10)            
             payload = f"{randomPrefix}{payload}{randomSubfix}"
-            result = reqHandler.getDataFromResponse(reqHandler.sendPayload(payload), randomPrefix, randomSubfix)
+            result = utils.getDataFromResponse(reqHandler.sendPayload(payload), randomPrefix, randomSubfix)
             self.enrichSubstringTable('stringMethods', i, result)
             
     def genSubstring(self, object, indexStart, indexEnd):

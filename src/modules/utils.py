@@ -34,21 +34,56 @@ class Utils:
             if word in randomStr:
                 return self.randomString(length, filtered)
         return randomStr
+    def getDataFromResponse(self, response, randomPrefix, randomSubfix):
+        """
+        Get data from response
+
+        :param response: Response object
+        :return: Data from response
+        """
+        if randomPrefix in response.text and randomSubfix in response.text:
+            data = response.text.split(randomPrefix)[1].split(randomSubfix)[0]
+            if len(data) > 0:
+                return data
+        return ''
+
+    def parseParams(self, params):
+        """
+        Parse parameters from string to list
+        
+        :param params: Parameters in string format
+        :return: List of parameters
+        """
+        params = params.split('&')
+        params = dict([tuple(param.split('=')) for param in params])
+        return params
+
+    def isJson(self, data):
+        """
+        Check if the data is JSON
+        
+        :param data: Data to check
+        :return: True if the data is JSON, False otherwise
+        """
+        try:
+            json.loads(data)
+            return True
+        except:
+            return False
             
      
 class RequestHandler:
-    def __init__(self, target: str, method: str, targetParam: str, extraParams: str, cookie: str, isJsonBody: bool):
+    def __init__(self, target: str, method: str, targetParam: str, params: dict, cookie: str, isJsonBody: bool):
         self.target = target
         self.method = method
         self.targetParam = targetParam
-        self.extraParams = extraParams
+        self.params = params
         self.isJsonBody = isJsonBody
         self.cookie = cookie
     def sendPayload(self, payload):
-        data = {
-            self.targetParam: payload,
-        }
-        data.update(json.loads(self.extraParams))
+        data = {}
+        data.update(self.params)
+        data.update({self.targetParam: payload})
         if self.isJsonBody:
             headers = {
                 'Content-Type': 'application/json'
@@ -62,15 +97,4 @@ class RequestHandler:
         return response
     
     
-    def getDataFromResponse(self, response, randomPrefix, randomSubfix):
-        """
-        Get data from response
-
-        :param response: Response object
-        :return: Data from response
-        """
-        if randomPrefix in response.text and randomSubfix in response.text:
-            data = response.text.split(randomPrefix)[1].split(randomSubfix)[0]
-            if len(data) > 0:
-                return data
-        return ''
+    
