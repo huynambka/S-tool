@@ -23,12 +23,12 @@ if __name__ == "__main__":
         params = json.loads(params)
     else:
         params = utils.parseParams(params)
-    targetParam = detectParams(urlTarget, method, params, cookie, isJsonBody)
-    if targetParam:
+    vulnParam = detectParams(urlTarget, method, params, cookie, isJsonBody)
+    if vulnParam:
         isContinue = input("Do you want to continue? (y/n): ").lower()
         if isContinue.lower() != 'y':
             exit()
-    requestHandler = RequestHandler(urlTarget, method, targetParam, params, cookie, isJsonBody)
+    requestHandler = RequestHandler(urlTarget, method, vulnParam, params, cookie, isJsonBody)
     genwaf = genWAF(requestHandler)
     waf = genwaf.generateWAF()
     print(waf)

@@ -73,17 +73,17 @@ class Utils:
             
      
 class RequestHandler:
-    def __init__(self, target: str, method: str, targetParam: str, params: dict, cookie: str, isJsonBody: bool):
+    def __init__(self, target: str, method: str, vulnParam: str, params: dict, cookie: str, isJsonBody: bool):
         self.target = target
         self.method = method
-        self.targetParam = targetParam
+        self.vulnParam = vulnParam
         self.params = params
         self.isJsonBody = isJsonBody
         self.cookie = cookie
     def sendPayload(self, payload):
         data = {}
         data.update(self.params)
-        data.update({self.targetParam: payload})
+        data.update({self.vulnParam: payload})
         if self.isJsonBody:
             headers = {
                 'Content-Type': 'application/json'
