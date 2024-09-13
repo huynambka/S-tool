@@ -35,5 +35,5 @@ if __name__ == "__main__":
     genwaf = genWAF(requestHandler)
     waf = genwaf.generateWAF()
     genPayload = GenPayload(requestHandler, waf)
-    command = input("Command: ")
-    print(genPayload.genExecPayload(command))
+
+    print(genPayload.readFile("/etc/passwd"))
