@@ -3,6 +3,7 @@ import json
 from modules.utils import *
 from modules.genWAF import *
 from modules.detectParams import *
+from modules.genPayload import *
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="SSTI Scanner")
@@ -10,7 +11,7 @@ if __name__ == "__main__":
     parser.add_argument("--params", help="Parameters of the target")
     parser.add_argument("--method", help="HTTP method (GET or POST)", default="GET")
     parser.add_argument("--cookie", help="Cookie for the request")
-    
+
     utils = Utils()
     args = parser.parse_args()
     params = args.params
@@ -26,9 +27,13 @@ if __name__ == "__main__":
     vulnParam = detectParams(urlTarget, method, params, cookie, isJsonBody)
     if vulnParam:
         isContinue = input("Do you want to continue? (y/n): ").lower()
-        if isContinue.lower() != 'y':
+        if isContinue.lower() != "y":
             exit()
-    requestHandler = RequestHandler(urlTarget, method, vulnParam, params, cookie, isJsonBody)
+    requestHandler = RequestHandler(
+        urlTarget, method, vulnParam, params, cookie, isJsonBody
+    )
     genwaf = genWAF(requestHandler)
     waf = genwaf.generateWAF()
-    print(waf)
+    genPayload = GenPayload(requestHandler, waf)
+    command = input("Command: ")
+    print(genPayload.genExecPayload(command))
