@@ -95,17 +95,9 @@ class genWAF:
         """
         Check if the response is filtered by the WAF
         """
-        if (
-            response.status_code == 403
-            or "blocked" in response.text.lower()
-            or "forbidden" in response.text.lower()
-        ):
+        if response.status_code == 403 or "blocked" in response.text.lower() or "forbidden" in response.text.lower():
             return True
-        if (
-            word not in response.text
-            and randomPrefix in response.text
-            and randomSubfix in response.text
-        ):
+        if word not in response.text and randomPrefix in response.text and randomSubfix in response.text:
             return True
         return False
 

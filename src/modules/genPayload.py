@@ -451,8 +451,10 @@ class GenPayload:
         )
         payload = self.genEL(innerPayload)
         response, result = self.sendPayload(payload)
-        if result in payload:
-            return "Something went wrong when reading file"
+
+        if innerPayload in result:
+            return "Something went wrong with the payload. Please try again"
+
         return result.replace("\\n", '\n')
 
     def execPayload(self, command):
@@ -475,7 +477,7 @@ class GenPayload:
 
         response, result = self.sendPayload(payload)
 
-        if result in payload:
-            return "Something went wrong when executing command"
+        if innerPayload in result:
+            return "Something went wrong with the payload. Please try again"
 
         return result.replace("\\n", '\n')

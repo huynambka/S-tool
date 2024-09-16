@@ -8,12 +8,28 @@ from modules.genPayload import *
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="SSTI Scanner")
     parser.add_argument("--url", help="URL of the target")
-    parser.add_argument("--params", help="Parameters of the target")
+    parser.add_argument("--params", help="Parameters GET or POST of the target")
     parser.add_argument("--method", help="HTTP method (GET or POST)", default="GET")
     parser.add_argument("--cookie", help="Cookie for the request")
 
     utils = Utils()
     args = parser.parse_args()
+
+    if not args.url:
+        print("Error: The --url argument is required.")
+        parser.print_help()
+        sys.exit(1)
+
+    if args.method not in ['GET', 'POST']:
+        print("Error: The --method argument must be GET or POST.")
+        parser.print_help()
+        sys.exit(1)
+
+    if not args.params:
+        print("Error: The --params argument is required.")
+        parser.print_help()
+        sys.exit(1)
+
     params = args.params
     urlTarget = args.url
     method = args.method
@@ -34,10 +50,10 @@ if __name__ == "__main__":
     waf = genwaf.generateWAF()
     genPayload = GenPayload(requestHandler, waf)
     command = ""
-    while command != "@exit":
+    while command != "exit":
         print("Type '@cmd [command]' to execute command")
         print("Type '@read' [filename] to read file")
-        print("Type '@exit' to exit")
+        print("Type 'exit' to exit")
         command = input(">> ")
         if command.startswith("@cmd"):
             command = command.replace("@cmd ", "")
