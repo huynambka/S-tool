@@ -1,5 +1,6 @@
 import argparse
 import json
+import sys
 from modules.utils import *
 from modules.genWAF import *
 from modules.detectParams import *
