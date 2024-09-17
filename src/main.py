@@ -1,10 +1,10 @@
 import argparse
 import json
 import sys
-from modules.utils import *
-from modules.genWAF import *
-from modules.detectParams import *
-from modules.genPayload import *
+from modules.utils import Utils, RequestHandler
+from modules.genWAF import genWAF
+from modules.detectParams import detectParams
+from modules.genPayload import GenPayload
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="SSTI Scanner")
@@ -21,7 +21,7 @@ if __name__ == "__main__":
         parser.print_help()
         sys.exit(1)
 
-    if args.method not in ['GET', 'POST']:
+    if args.method not in ["GET", "POST"]:
         print("Error: The --method argument must be GET or POST.")
         parser.print_help()
         sys.exit(1)
@@ -46,7 +46,9 @@ if __name__ == "__main__":
         isContinue = input("Do you want to continue? (y/n): ").lower()
         if isContinue.lower() != "y":
             exit()
-    requestHandler = RequestHandler(urlTarget, method, vulnParam, params, cookie, isJsonBody)
+    requestHandler = RequestHandler(
+        urlTarget, method, vulnParam, params, cookie, isJsonBody
+    )
     genwaf = genWAF(requestHandler)
     waf = genwaf.generateWAF()
     genPayload = GenPayload(requestHandler, waf)
@@ -54,11 +56,22 @@ if __name__ == "__main__":
     while command != "exit":
         print("Type '@cmd [command]' to execute command")
         print("Type '@read' [filename] to read file")
+        print("Type '@gen' to generate payload")
         print("Type 'exit' to exit")
         command = input(">> ")
         if command.startswith("@cmd"):
             command = command.replace("@cmd ", "")
-            print(genPayload.execPayload(command))
+            print(genPayload.exec(command))
         elif command.startswith("@read"):
             filename = command.replace("@read ", "")
-            print(genPayload.readFile(filename))
+            print(genPayload.read(filename))
+        elif command.startswith("@gen"):
+            genType = input(
+                "Type 'cmd' for generate command payload, 'read' for generate payload read file: "
+            )
+            if genType == "cmd":
+                cmd = input(">> ")
+                print(genPayload.genExecPayload(cmd))
+            elif genType == "read":
+                filename = input("filename: ")
+                print(genPayload.genReadFile(filename))
