@@ -6,7 +6,6 @@ import json
 
 
 class Utils:
-
     def read_lines_from_file(file_path):
         """
         Read lines from a file
@@ -82,6 +81,20 @@ class Utils:
         :return: True if the list has no digits, False otherwise
         """
         return not any(char.isdigit() for char in list)
+
+    def checkConnection(self, target):
+        try:
+            response = requests.get(target, timeout=5)
+        except requests.ConnectionError:
+            print(f"Failed to connect to {target}. Connection error.")
+            return False
+        except requests.Timeout:
+            print(f"Failed to connect to {target}. Request timed out.")
+            return False
+        except requests.RequestException as e:
+            print(f"An error occurred: {e}")
+            return False
+        return True
 
 
 class RequestHandler:

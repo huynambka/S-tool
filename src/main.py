@@ -33,6 +33,8 @@ if __name__ == "__main__":
 
     params = args.params
     urlTarget = args.url
+    if not utils.checkConnection(urlTarget):
+        exit()
     method = args.method
     cookie = args.cookie
     isJsonBody = False
