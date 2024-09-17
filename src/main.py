@@ -8,6 +8,7 @@ from modules.genPayload import GenPayload
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="SSTI Scanner")
+    parser.add_argument("--gen", help="Generate payload with WAF provide in waf.json")
     parser.add_argument("--url", help="URL of the target")
     parser.add_argument("--params", help="Parameters GET or POST of the target")
     parser.add_argument("--method", help="HTTP method (GET or POST)", default="GET")
@@ -15,6 +16,25 @@ if __name__ == "__main__":
 
     utils = Utils()
     args = parser.parse_args()
+
+    if args.gen:
+        waf = utils.jsonFromFile(args.gen)["waf"]
+        requestHandler = RequestHandler("", "", "", {}, "", False)
+        genPayload = GenPayload(requestHandler, waf, isOffline=True)
+
+        genType = input(
+            "Type 'cmd' for generate command payload, 'read' for generate payload read file: "
+        )
+        if genType == "cmd":
+            cmd = input(">> ")
+            print(genPayload.genExecPayload(cmd))
+        elif genType == "read":
+            filename = input("filename: ")
+            print(genPayload.genReadFile(filename))
+        else:
+            print("Invalid option")
+            exit()
+        exit()
 
     if not args.url:
         print("Error: The --url argument is required.")
@@ -67,13 +87,3 @@ if __name__ == "__main__":
         elif command.startswith("@read"):
             filename = command.replace("@read ", "")
             print(genPayload.read(filename))
-        elif command.startswith("@gen"):
-            genType = input(
-                "Type 'cmd' for generate command payload, 'read' for generate payload read file: "
-            )
-            if genType == "cmd":
-                cmd = input(">> ")
-                print(genPayload.genExecPayload(cmd))
-            elif genType == "read":
-                filename = input("filename: ")
-                print(genPayload.genReadFile(filename))

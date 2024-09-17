@@ -1,4 +1,5 @@
 import string
+import json
 from collections import OrderedDict
 from .utils import Utils
 
@@ -6,7 +7,7 @@ utils = Utils()
 
 
 class GenPayload:
-    def __init__(self, reqHandler, waf):
+    def __init__(self, reqHandler, waf, isOffline=False):
         self.reqHandler = reqHandler
         self.waf = waf
         self.WORDLIST = ["java", "lang", "io", "Char", "char", ".", "(", ")"]
@@ -22,8 +23,15 @@ class GenPayload:
         self.CONSTRUCTOR_INDEX = {}
 
         self.GEN_NUM_METHOD = ""
+        if isOffline:
+            self.offlineInit()
+        else:
+            self.initialize()
 
-        self.initialize()
+    def offlineInit(self):
+        initData = utils.jsonFromFile("datas/inits.json")
+        for key, value in initData.items():
+            setattr(self, key, value)
 
     def chooseNumMethod(self) -> str:
         if utils.checkNoDigits(self.waf):
@@ -158,8 +166,8 @@ class GenPayload:
             self.CLASS_CLASS, "java.lang.Class.forName(java.lang.String)"
         )
 
-        for l in self.LETTERS:
-            self.WORDLIST.append(l)
+        for letter in self.LETTERS:
+            self.WORDLIST.append(letter)
 
         self.genSubstringTable()
         for word in self.WORDLIST:
@@ -169,10 +177,6 @@ class GenPayload:
         self.initForname()
         self.initMethodsIndex()
         self.initConstructorsIndex()
-
-        # print(self.FORNAME['BufferedReader'])
-        # print(self.CONSTRUCTOR_INDEX['BufferedReader'])
-        # exit()
 
     def genNum(self, num):
         if hasattr(self, self.GEN_NUM_METHOD):
@@ -490,3 +494,13 @@ class GenPayload:
             return "Something went wrong with the payload. Please try again"
 
         return result.replace("\\n", "\n")
+
+    def printObj(self):
+        attributes = vars(self)
+        attributes.pop("reqHandler")
+        with open("inits.json", "w") as file:
+            file.write(
+                json.dumps(
+                    attributes, indent=4, sort_keys=True, separators=(", ", ": ")
+                )
+            )

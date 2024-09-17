@@ -1,4 +1,5 @@
 import os
+from os.path import exists
 import random
 import string
 import requests
@@ -6,21 +7,33 @@ import json
 
 
 class Utils:
-    def read_lines_from_file(file_path):
+    def arrayFromFile(self, filePath):
         """
         Read lines from a file
 
-        :param file_path: Path to the file
+        :param filePath: Path to the file
         :return: List of lines
         """
-        file_path = os.path.join(os.path.dirname(__file__), "..", file_path)
-        if not os.path.exists(file_path):
-            raise FileNotFoundError(f"The file {file_path} does not exist.")
+        filePath = os.path.join(os.path.dirname(__file__), "..", filePath)
+        if not os.path.exists(filePath):
+            raise FileNotFoundError(f"The file {filePath} does not exist.")
 
-        with open(file_path, "r", encoding="utf-8") as file:
+        with open(filePath, "r", encoding="utf-8") as file:
             # Read lines, strip whitespace, and ignore empty lines
             lines = [line.strip() for line in file.readlines() if line.strip()]
         return lines
+
+    def jsonFromFile(self, filePath) -> dict:
+        filePath = os.path.join(os.path.dirname(__file__), "..", filePath)
+        if not os.path.exists(filePath):
+            raise FileNotFoundError(f"The file {filePath} does not exist.")
+        with open(filePath, "r", encoding="utf-8") as file:
+            try:
+                data = json.load(file)
+                return data
+            except json.JSONDecodeError:
+                print(f"Error decoding JSON from file {filePath}")
+                return {}
 
     def randomString(self, length=10, filtered=[]):
         """

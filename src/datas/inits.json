@@ -1,0 +1,823 @@
+{
+    "ARRAY_CLASS": "[].getClass()", 
+    "ASC_toStringMethod_INDEX": 5, 
+    "CLASS_CLASS": "[].getClass().getClass()", 
+    "CONSTRUCTOR_INDEX": {
+        "BufferedReader": 1, 
+        "File": 5, 
+        "InputStreamReader": 3, 
+        "Scanner@File": 4, 
+        "Scanner@InputStream": 1
+    }, 
+    "FORNAME": {
+        "BufferedReader": "[].getClass().getClass().getMethods()[[[],[]].size()].invoke(null, [].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[[],[],[]].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getMethods()[[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[]].size(),[[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[]].size()))).concat([].getClass().toString().getClass().getDeclaredFields()[[[]].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[[],[],[],[]].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[]].size()))).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[]].size(),[[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[[]].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[]].size(),[[],[]].size()))))))))", 
+        "Character": "[].getClass().getClass().getMethods()[[[],[]].size()].invoke(null, [].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getMethods()[[[],[],[],[]].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[]].size(),[[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[[]].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[]].size(),[[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[]].size(),[[],[]].size()))))))))", 
+        "File": "[].getClass().getClass().getMethods()[[[],[]].size()].invoke(null, [].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[[],[],[]].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[[],[],[],[],[]].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[]].size(),[[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[]].size()))))))", 
+        "InputStreamReader": "[].getClass().getClass().getMethods()[[[],[]].size()].invoke(null, [].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[[],[],[]].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[[],[],[]].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([].size(),[[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[]].size(),[[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[]].size(),[[],[],[],[],[],[]].size()))).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[]].size(),[[],[]].size())))).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[]].size(),[[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[[],[],[],[],[]].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[[],[],[],[]].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[]].size(),[[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[[]].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[]].size(),[[],[]].size())))))))))", 
+        "Runtime": "[].getClass().getClass().getMethods()[[[],[]].size()].invoke(null, [].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[[],[],[],[]].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[]].size(),[[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[]].size(),[[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[[],[],[],[],[]].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[]].size()))))))", 
+        "Scanner": "[].getClass().getClass().getMethods()[[[],[]].size()].invoke(null, [].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[]].size(),[[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[]].size(),[[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[[]].size()].toString().substring([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[]].size(),[[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[]].size()).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[],[],[],[],[],[]].size(),[[],[],[],[],[],[],[]].size())).concat([].getClass().toString().getClass().getDeclaredFields()[[].size()].toString().substring([[]].size(),[[],[]].size())))))))"
+    }, 
+    "GEN_NUM_METHOD": "genNumArraySize", 
+    "LETTERS": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 
+    "METHODS_INDEX": {
+        "ascToString": 5, 
+        "exec": 12, 
+        "forName": 2, 
+        "getRuntime": 6
+    }, 
+    "STARTING_SUBSTRING_TABLE": {
+        "(": [
+            "stringMethods", 
+            0, 
+            38, 
+            39
+        ], 
+        ")": [
+            "stringMethods", 
+            0, 
+            55, 
+            56
+        ], 
+        ".": [
+            "stringFields", 
+            0, 
+            25, 
+            26
+        ], 
+        "A": [
+            "stringFields", 
+            4, 
+            42, 
+            43
+        ], 
+        "B": [
+            "stringMethods", 
+            24, 
+            37, 
+            38
+        ], 
+        "C": [
+            "stringFields", 
+            4, 
+            38, 
+            39
+        ], 
+        "Char": [
+            "stringMethods", 
+            4, 
+            32, 
+            36
+        ], 
+        "D": [
+            "stringFields", 
+            3, 
+            58, 
+            59
+        ], 
+        "E": [
+            "stringFields", 
+            6, 
+            61, 
+            62
+        ], 
+        "F": [
+            "stringFields", 
+            5, 
+            41, 
+            42
+        ], 
+        "G": [
+            "stringFields", 
+            4, 
+            51, 
+            52
+        ], 
+        "I": [
+            "stringFields", 
+            3, 
+            57, 
+            58
+        ], 
+        "L": [
+            "stringFields", 
+            7, 
+            35, 
+            36
+        ], 
+        "M": [
+            "stringFields", 
+            4, 
+            40, 
+            41
+        ], 
+        "N": [
+            "stringFields", 
+            4, 
+            50, 
+            51
+        ], 
+        "O": [
+            "stringFields", 
+            4, 
+            39, 
+            40
+        ], 
+        "P": [
+            "stringFields", 
+            4, 
+            41, 
+            42
+        ], 
+        "R": [
+            "stringFields", 
+            4, 
+            48, 
+            49
+        ], 
+        "S": [
+            "stringFields", 
+            0, 
+            31, 
+            32
+        ], 
+        "T": [
+            "stringFields", 
+            4, 
+            44, 
+            45
+        ], 
+        "U": [
+            "stringFields", 
+            3, 
+            56, 
+            57
+        ], 
+        "V": [
+            "stringFields", 
+            3, 
+            49, 
+            50
+        ], 
+        "W": [
+            "stringMethods", 
+            37, 
+            38, 
+            39
+        ], 
+        "X": [
+            "arrayFields", 
+            6, 
+            47, 
+            48
+        ], 
+        "Y": [
+            "arrayFields", 
+            1, 
+            60, 
+            61
+        ], 
+        "Z": [
+            "arrayFields", 
+            6, 
+            57, 
+            58
+        ], 
+        "a": [
+            "stringFields", 
+            0, 
+            4, 
+            5
+        ], 
+        "b": [
+            "stringFields", 
+            0, 
+            14, 
+            15
+        ], 
+        "c": [
+            "stringFields", 
+            1, 
+            36, 
+            37
+        ], 
+        "char": [
+            "stringMethods", 
+            4, 
+            46, 
+            50
+        ], 
+        "d": [
+            "stringFields", 
+            1, 
+            38, 
+            39
+        ], 
+        "e": [
+            "stringFields", 
+            0, 
+            6, 
+            7
+        ], 
+        "f": [
+            "stringFields", 
+            0, 
+            8, 
+            9
+        ], 
+        "g": [
+            "stringFields", 
+            0, 
+            29, 
+            30
+        ], 
+        "h": [
+            "stringFields", 
+            2, 
+            29, 
+            30
+        ], 
+        "i": [
+            "stringFields", 
+            0, 
+            2, 
+            3
+        ], 
+        "io": [
+            "stringFields", 
+            3, 
+            53, 
+            55
+        ], 
+        "j": [
+            "stringFields", 
+            0, 
+            21, 
+            22
+        ], 
+        "java": [
+            "stringFields", 
+            0, 
+            21, 
+            25
+        ], 
+        "k": [
+            "stringMethods", 
+            66, 
+            38, 
+            39
+        ], 
+        "l": [
+            "stringFields", 
+            0, 
+            12, 
+            13
+        ], 
+        "lang": [
+            "stringFields", 
+            0, 
+            26, 
+            30
+        ], 
+        "m": [
+            "stringFields", 
+            5, 
+            40, 
+            41
+        ], 
+        "n": [
+            "stringFields", 
+            0, 
+            10, 
+            11
+        ], 
+        "o": [
+            "stringFields", 
+            1, 
+            37, 
+            38
+        ], 
+        "p": [
+            "stringFields", 
+            0, 
+            0, 
+            1
+        ], 
+        "q": [
+            "stringMethods", 
+            0, 
+            33, 
+            34
+        ], 
+        "r": [
+            "stringFields", 
+            0, 
+            1, 
+            2
+        ], 
+        "s": [
+            "stringFields", 
+            2, 
+            31, 
+            32
+        ], 
+        "t": [
+            "stringFields", 
+            0, 
+            5, 
+            6
+        ], 
+        "u": [
+            "stringFields", 
+            0, 
+            41, 
+            42
+        ], 
+        "v": [
+            "stringFields", 
+            0, 
+            3, 
+            4
+        ], 
+        "w": [
+            "stringMethods", 
+            29, 
+            62, 
+            63
+        ], 
+        "x": [
+            "stringMethods", 
+            7, 
+            32, 
+            33
+        ], 
+        "y": [
+            "stringFields", 
+            0, 
+            15, 
+            16
+        ], 
+        "z": [
+            "arrayFields", 
+            5, 
+            34, 
+            35
+        ]
+    }, 
+    "STRING_CLASS": "[].getClass().toString().getClass()", 
+    "SUBSTRING_TABLE": {
+        "(": [
+            "stringMethods", 
+            0, 
+            38, 
+            39
+        ], 
+        ")": [
+            "stringMethods", 
+            0, 
+            55, 
+            56
+        ], 
+        ".": [
+            "stringFields", 
+            0, 
+            25, 
+            26
+        ], 
+        "A": [
+            "stringFields", 
+            4, 
+            42, 
+            43
+        ], 
+        "B": [
+            "stringMethods", 
+            24, 
+            37, 
+            38
+        ], 
+        "C": [
+            "stringFields", 
+            4, 
+            38, 
+            39
+        ], 
+        "Char": [
+            "stringMethods", 
+            4, 
+            32, 
+            36
+        ], 
+        "D": [
+            "stringFields", 
+            3, 
+            58, 
+            59
+        ], 
+        "E": [
+            "stringFields", 
+            6, 
+            61, 
+            62
+        ], 
+        "F": [
+            "stringFields", 
+            5, 
+            41, 
+            42
+        ], 
+        "G": [
+            "stringFields", 
+            4, 
+            51, 
+            52
+        ], 
+        "I": [
+            "stringFields", 
+            3, 
+            57, 
+            58
+        ], 
+        "L": [
+            "stringFields", 
+            7, 
+            35, 
+            36
+        ], 
+        "M": [
+            "stringFields", 
+            4, 
+            40, 
+            41
+        ], 
+        "N": [
+            "stringFields", 
+            4, 
+            50, 
+            51
+        ], 
+        "O": [
+            "stringFields", 
+            4, 
+            39, 
+            40
+        ], 
+        "P": [
+            "stringFields", 
+            4, 
+            41, 
+            42
+        ], 
+        "R": [
+            "stringFields", 
+            4, 
+            48, 
+            49
+        ], 
+        "S": [
+            "stringFields", 
+            0, 
+            31, 
+            32
+        ], 
+        "T": [
+            "stringFields", 
+            4, 
+            44, 
+            45
+        ], 
+        "U": [
+            "stringFields", 
+            3, 
+            56, 
+            57
+        ], 
+        "V": [
+            "stringFields", 
+            3, 
+            49, 
+            50
+        ], 
+        "W": [
+            "stringMethods", 
+            37, 
+            38, 
+            39
+        ], 
+        "X": [
+            "arrayFields", 
+            6, 
+            47, 
+            48
+        ], 
+        "Y": [
+            "arrayFields", 
+            1, 
+            60, 
+            61
+        ], 
+        "Z": [
+            "arrayFields", 
+            6, 
+            57, 
+            58
+        ], 
+        "a": [
+            "stringFields", 
+            0, 
+            4, 
+            5
+        ], 
+        "b": [
+            "stringFields", 
+            0, 
+            14, 
+            15
+        ], 
+        "c": [
+            "stringFields", 
+            1, 
+            36, 
+            37
+        ], 
+        "char": [
+            "stringMethods", 
+            4, 
+            46, 
+            50
+        ], 
+        "d": [
+            "stringFields", 
+            1, 
+            38, 
+            39
+        ], 
+        "e": [
+            "stringFields", 
+            0, 
+            6, 
+            7
+        ], 
+        "f": [
+            "stringFields", 
+            0, 
+            8, 
+            9
+        ], 
+        "g": [
+            "stringFields", 
+            0, 
+            29, 
+            30
+        ], 
+        "h": [
+            "stringFields", 
+            2, 
+            29, 
+            30
+        ], 
+        "i": [
+            "stringFields", 
+            0, 
+            2, 
+            3
+        ], 
+        "io": [
+            "stringFields", 
+            3, 
+            53, 
+            55
+        ], 
+        "j": [
+            "stringFields", 
+            0, 
+            21, 
+            22
+        ], 
+        "java": [
+            "stringFields", 
+            0, 
+            21, 
+            25
+        ], 
+        "k": [
+            "stringMethods", 
+            66, 
+            38, 
+            39
+        ], 
+        "l": [
+            "stringFields", 
+            0, 
+            12, 
+            13
+        ], 
+        "lang": [
+            "stringFields", 
+            0, 
+            26, 
+            30
+        ], 
+        "m": [
+            "stringFields", 
+            5, 
+            40, 
+            41
+        ], 
+        "n": [
+            "stringFields", 
+            0, 
+            10, 
+            11
+        ], 
+        "o": [
+            "stringFields", 
+            1, 
+            37, 
+            38
+        ], 
+        "p": [
+            "stringFields", 
+            0, 
+            0, 
+            1
+        ], 
+        "q": [
+            "stringMethods", 
+            0, 
+            33, 
+            34
+        ], 
+        "r": [
+            "stringFields", 
+            0, 
+            1, 
+            2
+        ], 
+        "s": [
+            "stringFields", 
+            2, 
+            31, 
+            32
+        ], 
+        "t": [
+            "stringFields", 
+            0, 
+            5, 
+            6
+        ], 
+        "u": [
+            "stringFields", 
+            0, 
+            41, 
+            42
+        ], 
+        "v": [
+            "stringFields", 
+            0, 
+            3, 
+            4
+        ], 
+        "w": [
+            "stringMethods", 
+            29, 
+            62, 
+            63
+        ], 
+        "x": [
+            "stringMethods", 
+            7, 
+            32, 
+            33
+        ], 
+        "y": [
+            "stringFields", 
+            0, 
+            15, 
+            16
+        ], 
+        "z": [
+            "arrayFields", 
+            5, 
+            34, 
+            35
+        ]
+    }, 
+    "WORDLIST": [
+        "java", 
+        "lang", 
+        "io", 
+        "Char", 
+        "char", 
+        ".", 
+        "(", 
+        ")", 
+        "a", 
+        "b", 
+        "c", 
+        "d", 
+        "e", 
+        "f", 
+        "g", 
+        "h", 
+        "i", 
+        "j", 
+        "k", 
+        "l", 
+        "m", 
+        "n", 
+        "o", 
+        "p", 
+        "q", 
+        "r", 
+        "s", 
+        "t", 
+        "u", 
+        "v", 
+        "w", 
+        "x", 
+        "y", 
+        "z", 
+        "A", 
+        "B", 
+        "C", 
+        "D", 
+        "E", 
+        "F", 
+        "G", 
+        "H", 
+        "I", 
+        "J", 
+        "K", 
+        "L", 
+        "M", 
+        "N", 
+        "O", 
+        "P", 
+        "Q", 
+        "R", 
+        "S", 
+        "T", 
+        "U", 
+        "V", 
+        "W", 
+        "X", 
+        "Y", 
+        "Z"
+    ], 
+    "waf": [
+        "if", 
+        "java", 
+        "java.lang.reflect", 
+        "Runtime", 
+        "exec", 
+        "ProcessBuilder", 
+        "java.io.File", 
+        "java.io.FileInputStream", 
+        "java.io.FileOutputStream", 
+        "java.io.FileReader", 
+        "java.io.FileWriter", 
+        "java.nio.file.Files", 
+        "java.nio.file.Paths", 
+        "java.lang.management", 
+        "getRuntimeMXBean", 
+        "javax.script", 
+        "eval", 
+        "forName", 
+        "class", 
+        "cmd", 
+        "eval", 
+        "true", 
+        "false", 
+        "char", 
+        "Char", 
+        "for", 
+        "while", 
+        "goto", 
+        "bash", 
+        "0", 
+        "1", 
+        "2", 
+        "3", 
+        "4", 
+        "5", 
+        "6", 
+        "7", 
+        "8", 
+        "9", 
+        "\"", 
+        "#", 
+        "%", 
+        "&", 
+        "'", 
+        "*", 
+        "+", 
+        "-", 
+        "/", 
+        ";", 
+        "<", 
+        ">", 
+        "`", 
+        "|", 
+        "~"
+    ]
+}
