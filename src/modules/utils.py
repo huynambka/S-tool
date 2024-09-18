@@ -97,6 +97,7 @@ class Utils:
 
     def checkConnection(self, target):
         try:
+            print(f"[+] Checking connection to target: {target}")
             response = requests.get(target, timeout=5)
         except requests.ConnectionError:
             print(f"Failed to connect to {target}. Connection error.")
@@ -107,6 +108,7 @@ class Utils:
         except requests.RequestException as e:
             print(f"An error occurred: {e}")
             return False
+        print(f"[*] Successfully connect to target: {target}")
         return True
 
 

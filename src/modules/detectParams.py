@@ -1,5 +1,4 @@
 import requests
-import json
 
 from .utils import Utils
 
@@ -13,6 +12,7 @@ payloads = {
     "${[]}": "[]",
     "${[].size()}": "0",
     '${"a"}': "a",
+    "${'zkz'.toString().replace('k','x')}": "zxz",
 }
 
 
@@ -22,6 +22,7 @@ def detectParams(
     for key, value in params.items():
         poisonedParams = dict(params)
         for payload, expectedResponse in payloads.items():
+            print(f"[+] Testing param [{key}] with payload: {payload}")
             for i in range(10):
                 randomPrefix = utils.randomString(5)
                 randomSubfix = utils.randomString(5)
@@ -41,7 +42,7 @@ def detectParams(
                 result = utils.getDataFromResponse(response, randomPrefix, randomSubfix)
                 if result == expectedResponse:
                     print(
-                        f"Parameter {key} seem to be vulnerable to SSTI with payload: {payload}"
+                        f"[*] Parameter {key} seem to be vulnerable to SSTI with payload: {payload}"
                     )
                     return key
     return ""

