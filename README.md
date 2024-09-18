@@ -10,5 +10,9 @@ python3 src/main.py --url 'http://127.0.0.1:1337/addContact' --params '{"firstNa
 ```
 [![asciicast](https://asciinema.org/a/eFVT7G16Rj6TLjwXaT5H5TRSS.svg)](https://asciinema.org/a/eFVT7G16Rj6TLjwXaT5H5TRSS)
 
+- Tạo payload với WAF trong file waf.json
+```
+python3 src/main.py --gen waf.json
+```
 # How it works
 
