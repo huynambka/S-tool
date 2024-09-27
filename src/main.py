@@ -8,33 +8,63 @@ from modules.genPayload import GenPayload
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="SSTI Scanner")
-    parser.add_argument("--gen", help="Generate payload with WAF provide in waf.json")
+
     parser.add_argument("--url", help="URL of the target")
     parser.add_argument("--params", help="Parameters GET or POST of the target")
     parser.add_argument("--method", help="HTTP method (GET or POST)", default="GET")
     parser.add_argument("--cookie", help="Cookie for the request")
+    parser.add_argument("--exec", help="Generate payload to execute command with WAF provide in waf.json")
+    parser.add_argument("--read", help="Generate payload to read file with WAF provide in waf.json")
+    parser.add_argument("--waf", help="Generate payload with custom WAF")
+    parser.add_argument("--string", help="Generate string")
+    parser.add_argument("--num", help="Generate number")
 
     utils = Utils()
     args = parser.parse_args()
 
-    if args.gen:
-        waf = utils.jsonFromFile(args.gen)["waf"]
-        requestHandler = RequestHandler("", "", "", {}, "", False)
-        genPayload = GenPayload(requestHandler, waf, isOffline=True)
+    if args.exec:
+        if args.waf:
+            waf = utils.jsonFromFile(args.waf)["waf"]
+            requestHandler = RequestHandler("", "", "", {}, "", False)
+            genPayload = GenPayload(requestHandler, waf, isOffline=True)
 
-        genType = input(
-            "Type 'cmd' for generate command payload, 'read' for generate payload read file: "
-        )
-        if genType == "cmd":
-            cmd = input(">> ")
-            print(genPayload.genExecPayload(cmd))
-        elif genType == "read":
-            filename = input("filename: ")
-            print(genPayload.genReadFile(filename))
+            print(genPayload.exec(args.exec))
+            exit(0)
         else:
-            print("Invalid option")
-            exit()
-        exit()
+            print("Error: The --waf argument is required.")
+            exit(1)
+
+    if args.read:
+        if args.waf:
+            waf = utils.jsonFromFile(args.waf)["waf"]
+            requestHandler = RequestHandler("", "", "", {}, "", False)
+            genPayload = GenPayload(requestHandler, waf, isOffline=True)
+
+            print(genPayload.read(args.read))
+            exit(0)
+        else:
+            print("Error: The --waf argument is required.")
+            exit(1)
+
+    if args.string:
+        if args.waf:
+            waf = utils.jsonFromFile(args.waf)["waf"]
+            requestHandler = RequestHandler("", "", "", {}, "", False)
+            genPayload = GenPayload(requestHandler, waf, isOffline=True)
+        else:
+            genPayload = GenPayload("", "", isOffline=True)
+        print(genPayload.genString(args.string))
+        exit(0)
+    if args.num:
+        if args.waf:
+            waf = utils.jsonFromFile(args.waf)["waf"]
+            requestHandler = RequestHandler("", "", "", {}, "", False)
+            genPayload = GenPayload(requestHandler, waf, isOffline=True)
+        else:
+            genPayload = GenPayload("", "", isOffline=True)
+        genPayload = GenPayload("", "", isOffline=True)
+        print(genPayload.genNum(int(args.num)))
+        exit(0)
 
     if not args.url:
         print("Error: The --url argument is required.")
@@ -54,7 +84,7 @@ if __name__ == "__main__":
     params = args.params
     urlTarget = args.url
     if not utils.checkConnection(urlTarget):
-        exit()
+        exit(1)
     method = args.method
     cookie = args.cookie
     isJsonBody = False
@@ -67,10 +97,8 @@ if __name__ == "__main__":
     if vulnParam:
         isContinue = input("[*] Do you want to continue? (y/n): ").lower()
         if isContinue.lower() != "y":
-            exit()
-    requestHandler = RequestHandler(
-        urlTarget, method, vulnParam, params, cookie, isJsonBody
-    )
+            exit(1)
+    requestHandler = RequestHandler(urlTarget, method, vulnParam, params, cookie, isJsonBody)
     genwaf = genWAF(requestHandler)
     waf = genwaf.generateWAF()
     genPayload = GenPayload(requestHandler, waf)
@@ -82,9 +110,7 @@ if __name__ == "__main__":
     while command != "exit":
         if canExec:
             if not hasOutput:
-                print(
-                    "Type '@cmd [command]' to execute command (but there is no output)"
-                )
+                print("Type '@cmd [command]' to execute command (but there is no output)")
             else:
                 print("Type '@cmd [command]' to execute command")
         if canRead:

@@ -14,7 +14,7 @@ class Utils:
         :param filePath: Path to the file
         :return: List of lines
         """
-        filePath = os.path.join(os.path.dirname(__file__), "..", filePath)
+        filePath = os.path.join(os.getcwd(), filePath)
         if not os.path.exists(filePath):
             raise FileNotFoundError(f"The file {filePath} does not exist.")
 
@@ -24,7 +24,7 @@ class Utils:
         return lines
 
     def jsonFromFile(self, filePath) -> dict:
-        filePath = os.path.join(os.path.dirname(__file__), "..", filePath)
+        filePath = os.path.join(os.getcwd(), filePath)
         if not os.path.exists(filePath):
             raise FileNotFoundError(f"The file {filePath} does not exist.")
         with open(filePath, "r", encoding="utf-8") as file:

