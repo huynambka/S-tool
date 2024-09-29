@@ -133,8 +133,11 @@ class RequestHandler:
         data = {}
         data.update(self.params)
         data.update({self.vulnParam: payload})
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'
+        }
         if self.isJsonBody:
-            headers = {"Content-Type": "application/json"}
+            headers.update({"Content-Type": "application/json"})
             response = requests.post(f"{self.target}", json=data, headers=headers)
         elif self.method == "POST":
             response = requests.post(f"{self.target}", data=data)
